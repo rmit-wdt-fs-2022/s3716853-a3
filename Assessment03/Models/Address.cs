@@ -12,11 +12,11 @@ public class Address
     public string Street { get; set; }
 
     [StringLength(100, MinimumLength = 1)]
-    [RegularExpression(Constants.SuburbRegex, ErrorMessage = "Must start with capital and can only contain letters and spaces")]
+    [RegularExpression("^[A-Z](?:[a-zA-Z]| )*$", ErrorMessage = "Must start with capital and can only contain letters and spaces")]
     public string Suburb { get; set; }
 
     [StringLength(4, MinimumLength = 4)]
-    [RegularExpression(Constants.PostCodeRegex, ErrorMessage = "Post Code only accepts digits")]
+    [RegularExpression("^\\d+", ErrorMessage = "Post Code only accepts digits")]
     [DataType(DataType.PostalCode)]
     public string PostCode { get; set; }
 

@@ -55,6 +55,7 @@ public class ContactsController : Controller
 
     public IActionResult UpdateStepOne()
     {
+        _logger.LogInformation("GET: Contacts/UpdateStepOne");
         List<Contact> contacts = _serviceProvider.GetRequiredService<ProjectContext>().Contacts.Include(contact => contact.Work).Include(contact => contact.Home).ToList();
         ViewBag.Contacts = contacts;
         return View();
@@ -99,6 +100,12 @@ public class ContactsController : Controller
 
     public async Task<IActionResult> UpdateComplete(UpdateStepTwoViewModel updateStepTwoViewModel)
     {
+        _logger.LogInformation("POST: Contacts/UpdateComplete");
+        if (!ModelState.IsValid)
+        {
+            return View("UpdateStepTwo", updateStepTwoViewModel);
+        }
+
         ProjectContext context = _serviceProvider.GetRequiredService<ProjectContext>();
         if (updateStepTwoViewModel.AddressId != null)
         {

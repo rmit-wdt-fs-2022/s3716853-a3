@@ -1,6 +1,8 @@
+using System.Net.Http.Headers;
 using Assessment03.Context;
 using Assessment03.Utilities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ProjectContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
+});
+
+builder.Services.AddHttpClient(Options.DefaultName, client =>
+{
+    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 });
 
 var app = builder.Build();

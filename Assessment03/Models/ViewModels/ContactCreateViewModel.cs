@@ -22,6 +22,6 @@ public class ContactCreateViewModel
     [DataType(DataType.PhoneNumber)]
     [StringLength(10, MinimumLength = 10)]
     [DisplayName("Mobile Phone")]
-    [RegularExpression("^04\\d{8}$", ErrorMessage = "Must follow 04XXXXXXXX format")]
+    [RegularExpression("^04\\d{8}$", ErrorMessage = "Must follow 04XXXXXXXX format where X are digits")]
     public string? MobilePhone { get; set; }
 }

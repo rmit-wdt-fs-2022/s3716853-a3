@@ -20,26 +20,35 @@ public class ContactsController : Controller
 
     public IActionResult Index()
     {
+        _logger.LogInformation("GET: Contacts/");
         List<Contact> contacts = _serviceProvider.GetRequiredService<ProjectContext>().Contacts.Include(contact => contact.Work).Include(contact => contact.Home).ToList();
         return View(contacts);
     }
 
     public IActionResult Create()
     {
+        _logger.LogInformation("GET: Contacts/Create");
         return View();
     }
 
-    public IActionResult SubmitCreate(ContactCreateViewModel contactCreateViewModel)
+    public async Task<IActionResult> SubmitCreate(ContactCreateViewModel contactCreateViewModel)
     {
+        _logger.LogInformation("GET: Contacts/CreateSubmit");
         if (!ModelState.IsValid)
         {
             return View("Create", contactCreateViewModel);
         }
-        _logger.LogError("Oh would you look at that you submitted!");
-        _logger.LogError(contactCreateViewModel.FirstName);
-        _logger.LogError(contactCreateViewModel.LastName);
-        _logger.LogError(contactCreateViewModel.Email);
-        _logger.LogError(contactCreateViewModel.MobilePhone);
+
+        ProjectContext context = _serviceProvider.GetRequiredService<ProjectContext>();
+        await context.AddAsync(new Contact()
+        {
+            Email = contactCreateViewModel.Email,
+            FirstName = contactCreateViewModel.FirstName,
+            LastName = contactCreateViewModel.LastName,
+            MobilePhone = contactCreateViewModel.MobilePhone
+        });
+        await context.SaveChangesAsync();
+
         return RedirectToAction("Index");
     }
 

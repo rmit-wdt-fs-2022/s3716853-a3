@@ -1,7 +1,16 @@
+using Assessment03.Context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add services to the container.
+builder.Services.AddDbContext<ProjectContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Database"));
+});
 
 var app = builder.Build();
 

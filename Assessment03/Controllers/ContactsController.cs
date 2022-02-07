@@ -11,7 +11,7 @@ namespace Assessment03.Controllers;
 public class ContactsController : Controller
 {
     private readonly ILogger<ContactsController> _logger;
-    protected readonly IServiceProvider _serviceProvider;
+    private readonly IServiceProvider _serviceProvider;
 
     public ContactsController(ILogger<ContactsController> logger, IServiceProvider serviceProvider)
     {

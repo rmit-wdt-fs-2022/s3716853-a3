@@ -16,7 +16,7 @@ public class Address
     public string Suburb { get; set; }
 
     [StringLength(4, MinimumLength = 4)]
-    [RegularExpression("^\\d+", ErrorMessage = "Post Code only accepts digits")]
+    [RegularExpression("^\\d+$", ErrorMessage = "Post Code only accepts digits")]
     [DataType(DataType.PostalCode)]
     public string PostCode { get; set; }
 

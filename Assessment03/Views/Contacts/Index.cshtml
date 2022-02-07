@@ -4,8 +4,8 @@
 }
 
 <div class="text-center">
+    <h4>Contacts</h4>
     <table class="table table-bordered">
-        <thead>Contacts</thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model[0].ContactId)
@@ -29,7 +29,7 @@
                 @Html.DisplayNameFor(model => model[0].Work)
             </th>
         </tr>
-        @foreach(Contact contact in Model)
+        @foreach (Contact contact in Model)
         {
             <tr>
                 <td>
@@ -50,7 +50,8 @@
                 <td>
                     @if (contact.Home != null)
                     {
-                        @await Html.PartialAsync("_AddressTable", contact.Home);
+                        @await Html.PartialAsync("_AddressTable", contact.Home)
+                        ;
                     }
                     else
                     {
@@ -62,7 +63,8 @@
                 <td>
                     @if (contact.Work != null)
                     {
-                        @await Html.PartialAsync("_AddressTable", contact.Work);
+                        @await Html.PartialAsync("_AddressTable", contact.Work)
+                        ;
                     }
                     else
                     {

@@ -15,12 +15,8 @@ namespace Assessment03.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            _logger.LogInformation("GET: /");
+            return RedirectToAction("Index", "Contacts");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

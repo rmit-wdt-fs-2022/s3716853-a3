@@ -1,0 +1,38 @@
+﻿@model Address
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AddressId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Suburb)
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.AddressId)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.PostCode)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.State)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Suburb)
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,80 @@
+﻿@model List<Contact>
+@{
+    ViewData["Title"] = "Contacts - All";
+}
+
+<div class="text-center">
+    <h4>Contacts</h4>
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].ContactId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].MobilePhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Home)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Work)
+            </th>
+        </tr>
+        @foreach (Contact contact in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(contacts => contact.ContactId)
+                </td>
+                <td>
+                    @Html.DisplayFor(contacts => contact.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(contacts => contact.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(contacts => contact.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(contacts => contact.MobilePhone)
+                </td>
+                <td>
+                    @if (contact.Home != null)
+                    {
+                        @await Html.PartialAsync("_AddressTable", contact.Home)
+                        ;
+                    }
+                    else
+                    {
+                        <span>
+                            N/A
+                        </span>
+                    }
+                </td>
+                <td>
+                    @if (contact.Work != null)
+                    {
+                        @await Html.PartialAsync("_AddressTable", contact.Work)
+                        ;
+                    }
+                    else
+                    {
+                        <span>
+                            N/A
+                        </span>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>

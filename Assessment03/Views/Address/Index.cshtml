@@ -1,0 +1,48 @@
+﻿@model List<Address>
+@{
+    ViewData["Title"] = "Address - All";
+}
+
+<div class="text-center">
+    <h4>Addresses</h4>
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].AddressId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Suburb)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].PostCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].State)
+            </th>
+        </tr>
+        @foreach (Address address in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(addresses => address.AddressId)
+                </td>
+                <td>
+                    @Html.DisplayFor(addresses => address.Street)
+                </td>
+                <td>
+                    @Html.DisplayFor(addresses => address.Suburb)
+                </td>
+                <td>
+                    @Html.DisplayFor(addresses => address.PostCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(addresses => address.State)
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>

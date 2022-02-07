@@ -1,0 +1,31 @@
+﻿@using Assessment03.Utilities
+@model Assessment03.Models.ViewModels.UpdateStepTwoViewModel
+@{
+    ViewData["Title"] = "Contacts - Update";
+}
+
+<div class="text-center">
+    <h4>Update Contact</h4>
+</div>
+<form method="post" asp-action="UpdateComplete">
+    <div class="form-group">
+        @Html.HiddenFor(model => model.ContactId)
+        @Html.HiddenFor(model => model.AddressId)
+        <div class="form-group">
+            @Html.CustomTextBox(model => model.Street)
+        </div>
+        <div class="form-group">
+            @Html.CustomTextBox(model => model.Suburb)
+        </div>
+        <div class="form-group">
+            @Html.CustomTextBox(model => model.PostCode)
+        </div>
+        <div class="form-group">
+            @Html.CustomDropDown(model => model.State, new SelectList(Enum.GetValues<State>()))
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+        </div>
+    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+</form>

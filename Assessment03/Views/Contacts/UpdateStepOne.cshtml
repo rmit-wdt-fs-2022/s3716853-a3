@@ -1,0 +1,32 @@
+﻿@using Assessment03.Utilities
+@model Assessment03.Models.ViewModels.UpdateStepOneViewModel
+@{
+    ViewData["Title"] = "Contacts - Update";
+    List<Contact> contacts = ViewBag.Contacts;
+
+    List<object> selectList = new();
+
+    foreach (Contact contact in contacts)
+    {
+        selectList.Add(new
+        {
+            Contact = contact.ContactId,
+            DisplayName = $"{contact.ContactId}-{contact.FirstName} {contact.LastName}"
+        });
+    }
+}
+
+<div class="text-center">
+    <h4>Update Contact</h4>
+</div>
+<form method="post" asp-action="UpdateStepTwo">
+    <div class="form-group">
+        <div class="form-group">
+            @Html.CustomDropDown(model => model.ContactId, new SelectList(selectList, "Contact", "DisplayName"))
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Continue" class="btn btn-primary"/>
+        </div>
+    </div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+</form>

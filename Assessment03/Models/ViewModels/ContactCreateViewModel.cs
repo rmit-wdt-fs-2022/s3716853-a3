@@ -20,7 +20,7 @@ public class ContactCreateViewModel
     public string Email { get; set; }
 
     [DataType(DataType.PhoneNumber)]
-    [StringLength(10, MinimumLength = 10)]
+    [StringLength(10, MinimumLength = 10, ErrorMessage = "A mobile number is 10 digits long")]
     [DisplayName("Mobile Phone")]
     [RegularExpression("^04\\d{8}$", ErrorMessage = "Must follow 04XXXXXXXX format where X are digits")]
     public string? MobilePhone { get; set; }
